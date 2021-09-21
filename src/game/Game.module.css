@@ -6,3 +6,37 @@
     align-items: center;
     justify-content: center;
 }
+
+.board {
+    width: 20vw;
+    height: 20vw;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.board button {
+    margin: 0;
+}
+
+@media screen and (max-width: 1200px) {
+    .board {
+        width: 40vw;
+        height: 40vw;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .board {
+        width: 60vw;
+        height: 60vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .board {
+        width: 80vw;
+        height: 80vw;
+    }
+}

@@ -1,0 +1,54 @@
+.wrapper {
+    position: relative;
+}
+
+.wrapper .handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: whitesmoke;
+    color: darkslategrey;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.results {
+    display: none;
+    background: whitesmoke;
+    width: 300px;
+    height: 100vh;
+}
+
+.results h1 {
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.results div {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.results div:nth-of-type(odd) {
+    background: lightgray;
+}
+
+.results.open {
+    display: block;
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper {
+        position: fixed;
+        right: 0;
+        top: 0;
+    }
+
+    .results {
+        width: 200px;
+    }
+}

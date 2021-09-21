@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import styles from './App.module.css';
 import Game from "./game/Game";
+import Results from "./results/Results";
+import StartMenu from "./startMenu/StartMenu";
 
 function App() {
     const [isPvP, setIsPvP] = useState(true)
@@ -10,35 +11,28 @@ function App() {
     const [results, setResults] = useState([])
 
     return (
-        <div className={styles.app}>
-            {startGame ?
-                <Game
+        <div className="app">
+            {!startGame ?
+                <StartMenu
                     isPvP={isPvP}
+                    setIsPvP={setIsPvP}
                     playerA={playerA}
+                    setPlayerA={setPlayerA}
                     playerB={playerB}
-                    onResult={result => setResults([...results, result])}
+                    setPlayerB={setPlayerB}
+                    startGame={() => setStartGame(true)}
                 />
                 :
-                <div className={styles.StartMenu}>
-                    <label htmlFor="pvp">PvP</label>
-                    <input id="pvp" type="checkbox" checked={isPvP} onChange={e => setIsPvP(e.target.checked)}/>
-
-                    <input type="text" placeholder="Player A Name" value={playerA} onInput={e => setPlayerA(e.target.value)} />
-                    {isPvP &&
-                        <input type="text" placeholder="Player B Name" value={playerB} onInput={e => setPlayerB(e.target.value)} />
-                    }
-
-                    <button onClick={() => setStartGame(true)}>Start Game</button>
-                </div>
+                <>
+                    <Game
+                        isPvP={isPvP}
+                        playerA={playerA}
+                        playerB={playerB}
+                        onResult={result => setResults([...results, result])}
+                    />
+                    <Results results={results}/>
+                </>
             }
-            <div className={styles.results}>
-                {results.map((result, i) =>
-                    <div>
-                        <span>Game {i+1}:</span>
-                        <span>{result}</span>
-                    </div>
-                )}
-            </div>
         </div>
     );
 }
