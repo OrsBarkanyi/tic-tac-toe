@@ -1,6 +1,10 @@
 import styles from "./StartMenu.module.css";
 
 function StartMenu ({isPvP, setIsPvP, playerA, setPlayerA, playerB, setPlayerB, startGame}) {
+    const isPlayerASet = playerA !== "";
+    const isPlayerBSet = playerB !== "";
+    const isValid = isPlayerASet && (!isPvP || isPlayerBSet)
+
     return (
         <div className={styles.startMenu}>
             <div>
@@ -26,7 +30,7 @@ function StartMenu ({isPvP, setIsPvP, playerA, setPlayerA, playerB, setPlayerB, 
                     onInput={e => setPlayerB(e.target.value)}
                 />
             }
-            <button onClick={startGame}>Start Game</button>
+            <button disabled={!isValid} onClick={startGame}>Start Game</button>
         </div>
     );
 }
